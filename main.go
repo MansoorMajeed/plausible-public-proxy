@@ -58,6 +58,8 @@ func main() {
 
 	http.HandleFunc("/pageviews", func(w http.ResponseWriter, r *http.Request) {
 
+		startTime := time.Now()
+
 		page := r.URL.Query().Get("page")
 		if page == "" {
 			http.Error(w, "page query parameter is required", http.StatusBadRequest)
@@ -129,7 +131,11 @@ func main() {
 			Page:      page,
 		})
 
-		log.Printf("[%s] - [%s] Request succeeded for page : %s", time.Now().Format("2006-01-02 15:04:05"), req.RemoteAddr, page)
+		clientIP := r.RemoteAddr
+		method := r.Method
+		uri := r.RequestURI
+		elapsedTime := time.Since(startTime)
+		log.Printf("%s - %s %s %s %s", time.Now().Format("2006-01-02 15:04:05"), clientIP, method, uri, elapsedTime)
 	})
 	// start the server
 	log.Printf("Server listening on port %s", serverPort)
