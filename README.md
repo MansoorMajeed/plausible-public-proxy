@@ -15,15 +15,9 @@ for the configured site.
 
 ## How to use it
 
+Update the environment variables in the docker-compose.yaml and
 ```
-export PLAUSIBLE_API_KEY=<plausible api token>
-export PLAUSIBLE_SITE_ID=M<example.com>
-export PLAUSIBLE_URL=https://plausible.domain.com
-export PORT=1200
-
-go build
-
-./plausible-proxy
+docker compose up -d
 
 curl 'localhost:1200/pageviews?page=/blog'
 {"pageviews":231,"page":"/blog"}
