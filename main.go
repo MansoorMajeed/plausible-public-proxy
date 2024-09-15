@@ -101,6 +101,7 @@ func main() {
 			log.Println(err)
 			return
 		}
+
 		defer resp.Body.Close()
 
 		if resp.StatusCode != http.StatusOK {
@@ -126,7 +127,6 @@ func main() {
 			Page:      page,
 		})
 	})
-
 	// start the server
 	log.Printf("Server listening on port %s", serverPort)
 	log.Fatal(http.ListenAndServe(":"+serverPort, nil))
