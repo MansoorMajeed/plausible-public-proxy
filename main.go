@@ -59,6 +59,9 @@ func main() {
 	http.HandleFunc("/pageviews", func(w http.ResponseWriter, r *http.Request) {
 
 		startTime := time.Now()
+		clientIP := r.RemoteAddr
+		method := r.Method
+		uri := r.RequestURI
 
 		page := r.URL.Query().Get("page")
 		if page == "" {
@@ -79,6 +82,8 @@ func main() {
 				Page:      page,
 				Cached:    true,
 			})
+			elapsedTime := time.Since(startTime)
+			log.Printf("%s - [cached] %s %s %s %s", time.Now().Format("2006-01-02 15:04:05"), clientIP, method, uri, elapsedTime)
 			return
 		}
 
@@ -131,9 +136,6 @@ func main() {
 			Page:      page,
 		})
 
-		clientIP := r.RemoteAddr
-		method := r.Method
-		uri := r.RequestURI
 		elapsedTime := time.Since(startTime)
 		log.Printf("%s - %s %s %s %s", time.Now().Format("2006-01-02 15:04:05"), clientIP, method, uri, elapsedTime)
 	})
