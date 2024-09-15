@@ -71,6 +71,7 @@ func main() {
 		// first check the cache
 		if x, found := cache.Get(page); found {
 			w.Header().Set("Content-Type", "application/json")
+			w.Header().Set("Access-Control-Allow-Origin", "*")
 			json.NewEncoder(w).Encode(ProxyResponse{
 				Pageviews: x.(int),
 				Page:      page,
@@ -121,6 +122,7 @@ func main() {
 
 		// send the response back to the client
 		w.Header().Set("Content-Type", "application/json")
+		w.Header().Set("Access-Control-Allow-Origin", "*")
 
 		json.NewEncoder(w).Encode(ProxyResponse{
 			Pageviews: plausibleResponse.Results.Pageviews.Value,
