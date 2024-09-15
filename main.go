@@ -35,7 +35,7 @@ func main() {
 	statPeriod := "6mo"
 	serverPort := os.Getenv("PORT")
 	if serverPort == "" {
-		serverPort = "8080"
+		serverPort = "7000"
 	}
 
 	if apiKey == "" {

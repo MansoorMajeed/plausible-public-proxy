@@ -1,0 +1,10 @@
+services:
+  plausible-public-proxy:
+    image: mansoor/plausible-public-proxy:latest
+    environment:
+      - APP_ENV=production
+      - APP_PORT=8080
+      - DB_HOST=db
+      - DB_PORT=5432
+    ports:
+      - "8080:8080"
