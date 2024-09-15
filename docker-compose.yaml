@@ -1,10 +1,10 @@
 services:
   plausible-public-proxy:
-    image: mansoor/plausible-public-proxy:latest
+    image: mansoor1/plausible-public-proxy:latest
     environment:
-      - APP_ENV=production
-      - APP_PORT=8080
-      - DB_HOST=db
-      - DB_PORT=5432
+      - PLAUSIBLE_API_KEY=your token
+      - PLAUSIBLE_SITE_ID=your site id
+      - PLAUSIBLE_URL=https://plausible.example.com
+      - PORT=1200
     ports:
-      - "8080:8080"
+      - "1200:7000"

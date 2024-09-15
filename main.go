@@ -128,6 +128,8 @@ func main() {
 			Pageviews: plausibleResponse.Results.Pageviews.Value,
 			Page:      page,
 		})
+
+		log.Printf("[%s] - [%s] Request succeeded for page : %s", time.Now().Format("2006-01-02 15:04:05"), req.RemoteAddr, page)
 	})
 	// start the server
 	log.Printf("Server listening on port %s", serverPort)
